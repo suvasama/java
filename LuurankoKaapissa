@@ -1,0 +1,58 @@
+/*
+ * Simppeli perustehtävä, jonka suunnittelin ja koodasin Javalla kurssille.
+ * Tarkoituksena on opetella ihan perusasioita. 
+ */
+
+/**
+ *
+ * @author suvasama
+ */
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+public class Luuranko {
+ 
+    public static void main(String[] args) {        
+        Scanner lukija = new Scanner(System.in);
+        ArrayList<String> kaapissa = new ArrayList<>();
+        
+        while (true) {
+            System.out.println("Syötä komento (lisaa, poista, kurkista, katoa):");
+            String komento = lukija.nextLine();
+ 
+            if (komento.equals("katoa")) {
+                break;
+            } else if (!komento.equals("lisaa") && !komento.equals("poista") && !komento.equals("kurkista")) {
+                System.out.println("Noudatathan ohjeita!");
+                continue;
+            }
+ 
+            System.out.println("Syötä ihmisen luu:");
+            String luu = lukija.nextLine();
+            
+            if (!luu.contains("luu") && !luu.contains("nikama")) {
+                System.out.println("Ei kelpaa.");
+                continue;
+            }
+            
+            if (komento.equals("lisaa")) {
+                kaapissa.add(luu);
+            } else if (komento.equals("poista")) {
+                if (kaapissa.contains(luu)) {
+                    kaapissa.remove(luu);
+                } else {
+                    System.out.println("Tyhjästä on paha nyhjästä.");
+                }
+            } else if (komento.equals("kurkista")) {
+                if (kaapissa.contains(luu)) {
+                    System.out.println("Luuranko kaapissa!");
+                } else {
+                    System.out.println("Kaappi on tyhjä.");
+                }
+            }
+        }
+    }
+
+}
